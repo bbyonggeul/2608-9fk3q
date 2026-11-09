@@ -969,6 +969,22 @@ body{
 }
 
 /* ─── FOOT ─────────────────────────────── */
+/* ── 지난 호 보관함 ── */
+.back{margin:34px 0 0;padding:22px 20px;border:1.5px solid var(--line);border-radius:14px;background:var(--paper2)}
+.back h3{margin:0 0 4px;font-size:15px;font-weight:800;color:var(--green);letter-spacing:-.01em}
+.back .sub{margin:0 0 14px;font-size:12.5px;color:var(--mut);word-break:keep-all;line-height:1.6}
+.back ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.back li a{display:flex;align-items:center;gap:10px;padding:12px 14px;border:1.5px solid var(--line);border-radius:10px;background:#fff;text-decoration:none;transition:.15s}
+.back li a:hover{background:var(--lilac)}
+.back .iss{font-family:var(--display);font-size:17px;color:var(--green);line-height:1;min-width:62px}
+.back .ttl{flex:1;font-size:13px;font-weight:700;color:var(--ink);word-break:keep-all}
+.back .arw{font-size:14px;color:var(--mut)}
+.back li.now a{background:var(--night);border-color:var(--night);pointer-events:none}
+.back li.now .iss{color:var(--butter)}
+.back li.now .ttl{color:#fff}
+.back li.now .arw{color:var(--butter);font-size:11px;font-weight:700;letter-spacing:.04em}
+@media(max-width:420px){.back .iss{min-width:54px;font-size:15px}.back .ttl{font-size:12px}}
+
 .foot{
   margin:26px 14px 0;
   padding:22px 6px 34px;text-align:center;
@@ -1152,6 +1168,15 @@ body{
         <span class="signtxt">뿅글이 드림</span>
       </div>
     </div>
+  </section>
+
+  <section class="back">
+    <h3>지난 머니레터</h3>
+    <p class="sub">놓치신 호가 있다면 여기서 보실 수 있어요. 지난 호에 담긴 금리·이벤트 정보는 <b>그 달 기준</b>이라 지금은 끝난 것도 있으니, 참고용으로만 봐주세요! 전체 목록은 <a href="https://bbyonggeul.github.io/2609-9fk3q/" target="_blank" rel="noopener" style="color:var(--green);font-weight:700">머니레터 보관함</a>에서 보실 수 있습니다.</p>
+    <ul>
+      <li class="now"><a href="#top"><span class="iss">2026.11</span><span class="ttl">겨울호 · 고향사랑기부제와 평생 알뜰폰</span><span class="arw">지금 보는 호</span></a></li>
+      <li><a href="https://bbyonggeul.github.io/2609-9fk3q/money.html" target="_blank" rel="noopener"><span class="iss">2026.08</span><span class="ttl">여름호 · 증권사 계좌 개설과 중개형 ISA</span><span class="arw">&#8594;</span></a></li>
+    </ul>
   </section>
 
   <footer class="foot">
