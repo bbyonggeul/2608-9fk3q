@@ -515,7 +515,8 @@ body{
   font-family:var(--mono);font-size:9.5px;font-weight:700;letter-spacing:.02em;
   padding:3px 7px;border-radius:20px;background:rgba(21,27,41,.08);color:var(--mut);
 }
-.mvname{font-size:15px;font-weight:800;letter-spacing:-.03em;line-height:1.4;margin-top:9px;word-break:keep-all}
+.mvpick{font-size:16.5px;font-weight:800;letter-spacing:-.04em;line-height:1.36;margin-top:10px;word-break:keep-all}
+.mvname{font-size:11.5px;font-weight:700;letter-spacing:-.02em;line-height:1.4;margin-top:5px;color:var(--mut);word-break:keep-all}
 
 .mvprice{display:flex;align-items:baseline;gap:7px;margin-top:7px;flex-wrap:wrap}
 .mvprice .now{
@@ -1262,6 +1263,7 @@ const MVNO = {
 
     { carrier:'LG헬로모바일', color:'#E51937',
       net:'LG U+',
+      pick:'당장 이번 주에 갈아타실 거라면?',
       name:'DATA 걱정없는 유심 7GB + 프로모션 코드',
       price:'월 15,900원',
       real:'1년차 월 900원',
@@ -1277,6 +1279,7 @@ const MVNO = {
 
     { carrier:'LG헬로모바일', color:'#E51937',
       net:'LG U+',
+      pick:'다 써도 안 끊기는 요금제를 찾는다면?',
       name:'쿠폰팩 유심 11GB (모요 전용)',
       price:'월 35,730원',
       real:'7개월간 체감 1,730원',
@@ -1292,7 +1295,8 @@ const MVNO = {
       link:'https://www.moyoplan.com/plans/37916' },
 
     { carrier:'티플러스', color:'#1C9C8B',
-      net:'LG U+ · SKT · KT',
+      net:'KT · LG U+',
+      pick:'전화랑 카톡만 되면 되는 요금제를 찾는다면?',
       name:'티플 가성비 (300분 / 6GB) 평생요금',
       price:'월 6,000원',
       real:'평생 월 1,900원',
@@ -1300,13 +1304,14 @@ const MVNO = {
              real:'1년 22,800원',
              note:'8개월째에도 1,900원 · 2년 써도 45,600원' },
       data:'6GB', call:'300분', sms:'300건',
-      badges:['1년 22,800원','평생요금','세 통신망 모두 동일가','11월 30일까지'],
+      badges:['1년 22,800원','평생요금','KT망 기준','11월 30일까지'],
       say:'전화랑 카톡만 되면 되는 분들은 여기서 끝! 6GB에 통화 300분인데 <b>평생 1,900원</b>이에요. 1년에 22,800원이잖아요ㅎㅎ<br><br>알뜰폰 고르실 때 딱 하나만 보세요. <b>&lsquo;평생&rsquo;이 붙었는지</b>요! 비교 사이트 위에 뜨는 싼 요금제는 대부분 7개월짜리라 8개월째부터 4~6만원으로 튀어요. 알닷의 토스5G알닷 180GB+가 7개월간 11,400원인데 그 뒤로 <b>56,800원</b>이거든요. 2년이면 104만원 vs 45,600원! 차이가 이만큼 납니다.',
       warn:'<b>데이터 6GB는 다 쓰면 그냥 끊겨요.</b> 소진 후 1Mbps 같은 안전장치가 없는 요금제라, 영상 보시는 분은 아래 슈가모바일 쪽이 맞아요. 지난 석 달 데이터 사용량부터 확인해보세요.<br><br>그리고 11월 티플러스 가입 이벤트(셀프개통·eSIM 추첨, 예스24 크레마클럽 이용권)는 <b>모요를 거쳐 가입하면 대상에서 빠져요.</b> 공식 안내에 &ldquo;모요 제외&rdquo;라고 명시돼 있어요. 반대로 <b>알닷으로 가입하면 네이버페이 등 별도 혜택</b>이 붙고요. 어디로 들어가느냐에 따라 받는 게 달라지니 <b>가입 직전에 두 곳을 비교</b>해보세요.',
       link:'https://www.tplusmobile.com/main/event/event?eventtp=ing' },
 
     { carrier:'슈가모바일', color:'#B0407A',
-      net:'5G',
+      net:'LG U+ · 5G',
+      pick:'5G로 영상까지 보는 요금제를 찾는다면?',
       name:'5G Sugar 실속 (300분 / 15GB) 평생',
       price:'월 24,090원',
       real:'평생 월 7,700원',
@@ -1321,6 +1326,7 @@ const MVNO = {
 
     { carrier:'핀다이렉트', color:'#1B3BDB',
       net:'KT · LG U+',
+      pick:'데이터를 펑펑 쓰는 요금제를 찾는다면?',
       name:'핀다이렉트Z 100GB+ (네이버페이)',
       price:'월 39,900원',
       real:'7개월간 체감 4,900원',
@@ -1335,21 +1341,22 @@ const MVNO = {
       warn:'<b>&ldquo;월 4,000원&rdquo;이라는 표기에 속으시면 안 돼요.</b> 실제로는 <b>매달 39,900원이 나가고</b> 네이버페이로 3만 5천원을 돌려받는 거예요. 11GB 요금제와 똑같은 구조고요.<br><br><b>8개월째부터 48,400원으로 뜁니다.</b> 네이버페이 3만원이 끊기거든요. 평생 5천원만 남아서 체감 43,400원이에요. <b>그때는 다른 요금제로 갈아타시는 게</b> 맞아요.<br><br><b>100GB가 정말 필요한지부터 보세요.</b> 지난 석 달 데이터 사용량을 확인해보시고, <b>30GB도 안 쓰신다면 위 11GB 요금제가 훨씬 쌉니다.</b> 1년 실부담이 14만 6천원 대 25만원이라 10만원 넘게 차이 나요.<br><br>네이버페이는 <b>가입 다음 달부터 매달 말일경</b> 들어와요. 첫 달엔 안 들어오니 당황하지 마세요.',
       link:'https://www.pindirectshop.com/' },
 
-    { carrier:'티플러스', color:'#1C9C8B',
-      net:'SKT',
-      name:'티플 15G+ (100분) · CU멤버십 + 매월 5,000P',
-      price:'월 39,600원',
-      real:'7개월간 월 10,900원',
-      after:'8개월 후 월 39,600원',
-      calc:{ items:[{v:'10,900원',k:'7개월 월 요금'},{v:'11,000원',k:'매월 받는 혜택'}],
-             real:'체감가 0원',
-             note:'티플러스가 자사 페이지에 직접 &ldquo;혜택 체감가 0원&rdquo;이라고 적어둔 요금제예요' },
-      data:'15GB', dataSub:'소진 후 3Mbps',
-      call:'100분', sms:'100건',
-      badges:['혜택 체감가 0원','CU 매월 5천원','매월 5,000P','8개월째 갈아타기 필수'],
-      say:'요금은 좀 나가도 상품권으로 돌려받는 게 낫다 싶으면 이쪽이에요. 7개월간 10,900원인데 매달 <b>CU 5,000원 + 포인트 5,000P</b>가 들어와요. 티플러스가 직접 <b>&lsquo;혜택 체감가 0원&rsquo;</b>이라고 써놨어요ㅎㅎ<br><br>같은 줄에 있는 것들도 적어드릴게요. 전부 CU멤버십＋5,000P예요.<br>· 티플 10G+ (통화 기본) <b>8,900원</b> → 체감가 0원<br>· 티플 11G+ (11GB＋매일 2GB) <b>15,900원</b> → 4,900원<br>· 티플 100G+ (100GB) <b>21,900원</b> → 10,900원<br><br>데이터 많이 쓰시면 LG헬로가 더 커요. 5G는 네이버페이 월 1.5만원×24개월 = <b>36만원</b>! 5G 125GB가 체감가 28,000원이 되거든요.',
-      warn:'<b>혜택을 다 써야 계산이 맞아요.</b> CU 할인은 <b>월 5,000원 한도가 매월 1일에 생겼다 말일에 사라집니다.</b> 이월이 안 돼서 CU를 안 가는 달은 그냥 증발해요. <b>오프라인 매장만</b> 되고 <b>담배·주류·상품권·택배는 제외</b>고요.<br><br>가입하면 <b>다음 달 말일</b>에 인증 문자가 와요. 포켓CU 앱에서 제휴 인증을 해야 쿠폰이 열리니 문자 놓치지 마세요!<br><br>제일 중요한 건 <b>8개월째에 39,600원으로 자동 전환</b>된다는 거예요. 무약정이라 위약금은 없으니 <b>7개월 되는 달에 알림 걸어두고 갈아타세요.</b> 안 그러면 1년에 27만원이 넘어서 위 평생요금보다 훨씬 비싸집니다. CU 혜택도 <b>최대 12개월</b>까지예요.',
-      link:'https://www.tplusmobile.com/main/event/event?eventtp=winner' },
+    { carrier:'티플러스', color:'#8A5A3C',
+      net:'KT',
+      pick:'요금은 나가도 상품권으로 돌려받는 요금제를 찾는다면?',
+      name:'티플 KT 11GB+ · 올리브영 상품권 + CU 20% 할인',
+      price:'월 44,000원',
+      real:'7개월간 월 8,900원',
+      after:'8개월 후 월 44,000원',
+      calc:{ items:[{v:'8,900원',k:'7개월 월 요금'},{v:'5,000원',k:'매달 올리브영 상품권'}],
+             real:'체감 3,900원',
+             note:'올리브영은 12개월 지급 · 1년 실부담 약 22만원' },
+      data:'무제한', dataSub:'11GB + 매일 2GB, 소진 후 3Mbps',
+      call:'무제한', sms:'무제한',
+      badges:['올리브영 1년 6만원','CU 20% 상시할인','2번 카드와 같은 데이터','약정 없음'],
+      say:'<b>&ldquo;요금 좀 나가도 상품권으로 돌려받으면 되지&rdquo;</b> 하시는 분을 위한 유형이에요. 위 카드들과 계산법이 완전히 달라요.<br><br>데이터는 <b>2번 카드와 똑같아요.</b> 11GB에 매일 2GB, 소진 후 3Mbps고요. 대신 돌려받는 게 <b>현금성 상품권</b>이에요. <b>올리브영 상품권 5,000원이 12개월</b> 들어오고, <b>CU 오프라인 매장에서 20% 할인</b>이 상시로 붙습니다.<br><br>7개월간 <b>8,900원</b>에 올리브영 5,000원을 빼면 <b>체감 3,900원</b>이에요. 1년 총액은 282,300원인데 올리브영 6만원을 빼면 <b>실부담 약 22만원</b>이고요.<br><br><b>솔직히 금액만 보면 2번 카드가 나아요.</b> 데이터가 같은데 1년 실부담이 <b>14만 6천원 대 22만원</b>이라 7만원 넘게 차이 나거든요. 그래도 여기를 고를 이유는 둘이에요. <b>올리브영을 원래 자주 가신다</b>, 그리고 <b>모요 포인트 말고 현금에 가까운 상품권으로 받고 싶다</b>는 거요.',
+      warn:'<b>CU 20% 할인은 한도를 확인하지 못했어요.</b> 모요 안내에 할인 한도와 기간이 안 적혀 있더라고요. 보통 이런 편의점 할인은 <b>월 한도가 걸려 있고 담배·주류·상품권·택배는 빠져요.</b> 가입 화면에서 꼭 확인하세요.<br><br><b>올리브영 상품권은 1개월 유지가 조건</b>이에요. 개통하고 한 달 안에 해지하면 못 받아요.<br><br><b>8개월째에 44,000원으로 자동 전환돼요.</b> 이게 제일 큽니다. 7개월 뒤에도 올리브영 5천원은 계속 나오지만 <b>체감 39,000원</b>이에요. <b>무약정이라 위약금은 없으니 7개월 되는 달에 알림을 걸어두고</b> 그때 2번 카드나 다른 요금제로 갈아타세요.',
+      link:'https://www.moyoplan.com/plans/23577' },
 
   ]
 };
@@ -2313,6 +2320,7 @@ const STAR = `<svg class="star" viewBox="0 0 24 24" fill="#1F5138"><path d="M12 
             <span class="mvco" style="background:${p.color};color:${textOn(p.color)}">${p.carrier}</span>
             ${p.net?`<span class="mvnet">${p.net} 망</span>`:''}
           </div>
+          ${p.pick?`<div class="mvpick">${p.pick}</div>`:''}
           <div class="mvname">${p.name}</div>
           <div class="mvprice">
             <span class="now">${p.real || p.price}</span>
