@@ -1312,7 +1312,7 @@ const CARDNOTE = {
    say     : 뿅글이 한마디 (선택)   warn : 주의사항 (선택)
    link    : 가입 페이지 주소 (선택)                            */
 const MVNO = {
-  note:'<b>이번 달은 네 개만 골랐어요.</b> 제일 많이 찾는 <b>11GB + 매일 2GB + 3Mbps</b> 세 장과 대용량 하나예요. <b>SKT망은 뺐습니다.</b><br><b>표시 가격을 그대로 믿으시면 안 돼요.</b> 비교 사이트의 &ldquo;월 1,730원&rdquo; 같은 숫자는 <b>페이백을 뺀 체감가</b>라, 실제로는 전액이 빠져나가고 나중에 돌아옵니다. 그래서 전부 <b>실제 내는 돈 &rarr; 돌려받는 돈 &rarr; 실질혜택가</b> 순서로 풀었어요.<br><b>갈아탈 시점도 요금제마다 적어뒀어요.</b> 알뜰폰은 무약정이라 위약금이 없으니 혜택이 끊기는 달에 나오시면 돼요. 그냥 두면 요금이 3~4만원대로 뜁니다.<br><b>&ldquo;평생 딱지부터 보라&rdquo;던 제 기준도 정정할게요.</b> 11GB 이상은 평생요금이 2만 8천원대에서 더 안 내려가서, 7개월 페이백 쪽이 총액으로도 쌉니다.<br>11월 10일 기준이고 요금제는 수시로 바뀌니 가입 전에 꼭 다시 확인하세요!',
+  note:'11월 10일 기준이고 요금제는 수시로 바뀌니 가입 전에 꼭 다시 확인하세요!',
   plans:[
 
     { carrier:'LG헬로모바일', color:'#D4145A',
@@ -2336,12 +2336,12 @@ const STAR = `<svg class="star" viewBox="0 0 24 24" fill="#1F5138"><path d="M12 
   if(!plans.length){ if(sec) sec.style.display='none'; return; }
 
   box.innerHTML = plans.map((p,i)=>{
+    const cs = (p.call && p.call===p.sms)
+      ? `<span><span class="k">통화/문자</span><span class="v">${p.call}</span></span>`
+      : `${p.call?`<span><span class="k">통화</span><span class="v">${p.call}</span></span>`:''}${p.sms?`<span><span class="k">문자</span><span class="v">${p.sms}</span></span>`:''}`;
     const spec = p.data ? `
-      <div class="r"><span class="k">데이터</span><span class="v">${p.data}</span>${p.dataSub?`<span class="s">${p.dataSub}</span>`:''}</div>
-      <div class="r two">
-        ${p.call?`<span><span class="k">통화</span><span class="v">${p.call}</span></span>`:''}
-        ${p.sms?`<span><span class="k">문자</span><span class="v">${p.sms}</span></span>`:''}
-      </div>` : '';
+      <div class="r two"><span><span class="k">데이터</span><span class="v">${p.data}</span></span>${cs}</div>
+      ${p.dataSub?`<div class="r"><span class="s">${p.dataSub}</span></div>`:''}` : '';
     return `
       <article class="mvcard" id="mv${i}">
         <div class="mvstrip" style="background:${p.color}"></div>
