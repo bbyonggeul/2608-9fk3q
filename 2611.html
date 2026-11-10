@@ -447,6 +447,20 @@ html{scroll-behavior:smooth}
 .chrule::after{content:'';flex:1;height:1px;margin-left:6px;background:var(--tan)}
 
 .cheerlist{margin-top:11px;display:flex;flex-direction:column;gap:9px}
+.cheerlist.scrollable{
+  overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;
+  padding-right:6px;
+  -webkit-mask-image:linear-gradient(to bottom,#000 calc(100% - 30px),transparent 100%);
+          mask-image:linear-gradient(to bottom,#000 calc(100% - 30px),transparent 100%);
+}
+.cheerlist.scrollable.atend{-webkit-mask-image:none;mask-image:none}
+.cheerlist.scrollable::-webkit-scrollbar{width:5px}
+.cheerlist.scrollable::-webkit-scrollbar-track{background:transparent}
+.cheerlist.scrollable::-webkit-scrollbar-thumb{background:rgba(163,48,58,.28);border-radius:3px}
+.cheerhint{
+  margin:9px 0 0;font-family:var(--mono);font-size:9.5px;letter-spacing:.02em;
+  color:var(--cfaint);text-align:center;
+}
 .cmsg{background:var(--cream2);border:1.5px solid var(--tan);border-radius:4px;padding:12px 13px 13px}
 .cmsg.mine{border-color:rgba(163,48,58,.42);background:#FDF8F4}
 .cmsg .ct{
@@ -1255,6 +1269,7 @@ html{scroll-behavior:smooth}
     <p class="chrule"><span>도착한 편지</span><b id="cheertotal">0</b><span>통</span></p>
     <div class="cheerlist" id="cheerlist"></div>
     <button class="cheermore" id="cheermore" type="button">더 보기</button>
+      <p class="cheerhint" id="cheerhint"></p>
   </section>
 
   <section class="rec" id="rec">
@@ -3780,7 +3795,7 @@ const CHEER_API = 'https://script.google.com/macros/s/AKfycbx8_cplz7cLFc-6cNPiSm
   const txt=document.getElementById('cheertxt'), btn=document.getElementById('cheersend'),
         cnt=document.getElementById('cheercnt'), msg=document.getElementById('cheermsg'),
         list=document.getElementById('cheerlist'), nameEl=document.getElementById('cheername'),
-        totEl=document.getElementById('cheertotal'), more=document.getElementById('cheermore'),
+        totEl=document.getElementById('cheertotal'), more=document.getElementById('cheermore'), hint=document.getElementById('cheerhint'),
         prev=document.getElementById('cheerprev');
   const LIVE=!!CHEER_API, PAGE=3, MORE=12;
   let items=[], shown=PAGE, uid='', nick='', mine=null, touched=false;
@@ -3810,19 +3825,32 @@ const CHEER_API = 'https://script.google.com/macros/s/AKfycbx8_cplz7cLFc-6cNPiSm
       list.innerHTML='<p class="cheerempty">아직 도착한 편지가 없어요<b>첫 번째 편지를 보내보실래요?</b></p>';
       more.style.display='none'; return;
     }
-    list.innerHTML = items.slice(0,shown).map(i=>
+    list.innerHTML = items.map(i=>
       '<div class="cmsg'+(i.uid===uid?' mine':'')+'">'
       +'<div class="ct"><span class="nk">'+esc(i.nick)+'</span>'
       +(i.uid===uid?'<span class="mi">MY LETTER</span>':'')
       +'<span class="dt">'+fd(i.at)+'</span></div>'
       +'<p>'+esc(i.text)+'</p></div>').join('');
-    if(items.length>shown){
-      more.style.display='block'; more.dataset.act='more';
-      more.textContent='남은 편지 '+(items.length-shown)+'통 더 보기';
-    } else if(shown>PAGE){
-      more.style.display='block'; more.dataset.act='fold'; more.textContent='접기';
-    } else more.style.display='none';
+    more.style.display='none';
+    fit();
   }
+
+  function fit(){
+    if(items.length>PAGE && list.children.length>PAGE){
+      list.classList.add('scrollable');
+      const top=list.getBoundingClientRect().top;
+      const h=Math.round(list.children[PAGE-1].getBoundingClientRect().bottom-top+16);
+      list.style.maxHeight=h+'px';
+      if(hint) hint.textContent='편지 '+items.length+'통 · 칸 안에서 스크롤해서 보세요';
+    }else{
+      list.classList.remove('scrollable','atend');
+      list.style.maxHeight='';
+      if(hint) hint.textContent='';
+    }
+  }
+  list.addEventListener('scroll',()=>{
+    list.classList.toggle('atend', list.scrollTop+list.clientHeight >= list.scrollHeight-4);
+  });
 
   const lget=()=>{ try{ return JSON.parse(ls.g('bg_cheer_local')||'[]'); }catch(e){ return []; } };
   const lset=a=>ls.s('bg_cheer_local',JSON.stringify(a));
