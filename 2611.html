@@ -504,34 +504,6 @@ html{scroll-behavior:smooth}
 }
 .htndday .mono{font-family:var(--mono);font-size:12.5px}
 
-/* 계산 카드 */
-.htncalc{display:flex;gap:9px;margin-top:16px}
-.htncalc > div{
-  flex:1;background:rgba(255,255,255,.07);border:1.5px solid rgba(230,238,247,.22);
-  border-radius:12px;padding:13px 11px 12px;min-width:0;
-}
-.htncalc .top{display:block;font-size:11px;font-weight:700;color:rgba(230,238,247,.62);letter-spacing:-.02em}
-.htncalc .big{display:block;font-family:var(--mono);font-size:19px;font-weight:700;letter-spacing:-.05em;margin-top:3px;color:#E6EEF7;white-space:nowrap}
-.htncalc ul{list-style:none;margin:9px 0 0;padding:0;border-top:1px dashed rgba(230,238,247,.22);padding-top:8px}
-.htncalc li{display:flex;justify-content:space-between;gap:6px;font-size:11px;line-height:1.9;color:rgba(230,238,247,.82)}
-.htncalc li span:last-child{font-family:var(--mono);font-weight:700;letter-spacing:-.03em;color:#E6EEF7}
-.htncalc .net{
-  display:flex;justify-content:space-between;gap:6px;margin-top:8px;padding-top:8px;
-  border-top:1.5px solid rgba(240,176,60,.45);font-size:11.5px;font-weight:800;color:var(--butter);
-}
-.htncalc .net span:last-child{font-family:var(--mono);font-size:14px;letter-spacing:-.04em}
-.htncalc .best{border-color:rgba(240,176,60,.7);background:rgba(240,176,60,.12)}
-
-.htnrow{
-  display:flex;gap:8px;align-items:flex-start;margin-top:12px;
-  font-size:12px;line-height:1.7;color:rgba(230,238,247,.88);word-break:keep-all;
-}
-.htnrow .ic{
-  flex:none;font-family:var(--mono);font-size:9.5px;font-weight:700;letter-spacing:-.02em;
-  background:rgba(230,238,247,.14);border-radius:6px;padding:3px 7px;margin-top:1px;color:#E6EEF7;
-}
-.htnrow b{color:var(--butter);font-weight:700}
-
 .htnwarn{
   margin-top:16px;background:rgba(207,51,64,.14);border:1.5px solid rgba(207,51,64,.42);
   border-radius:12px;padding:12px 13px;font-size:12px;line-height:1.72;
@@ -555,7 +527,14 @@ html{scroll-behavior:smooth}
   background:var(--butter);color:var(--night);border-radius:11px;padding:12px;
   font-size:13px;font-weight:800;text-decoration:none;letter-spacing:-.02em;
 }
-.htncta .arw{font-family:var(--mono);font-size:12px}
+.htncta .arw,.htncta2 .arw{font-family:var(--mono);font-size:12px}
+.htncta2{
+  display:flex;align-items:center;justify-content:center;gap:7px;margin-top:16px;
+  background:transparent;color:#E6EEF7;border:1.5px solid rgba(230,238,247,.42);
+  border-radius:11px;padding:11px;
+  font-size:12.5px;font-weight:800;text-decoration:none;letter-spacing:-.02em;
+}
+.htncta2 + .htncta{margin-top:8px}
 
 /* 다음 호 예고 */
 .htnnext{
@@ -564,9 +543,6 @@ html{scroll-behavior:smooth}
 }
 .htnnext b{color:#E6EEF7;font-weight:700}
 
-@media (max-width:359px){
-  .htncalc{flex-direction:column}
-}
 
 /* ─── MVNO (알뜰폰 요금제 추천) ───────── */
 .mvno{
@@ -1242,36 +1218,10 @@ html{scroll-behavior:smooth}
     <div class="htnhead">
       <h2>고향사랑기부제</h2>
     </div>
-    <p class="htnsub">이번 호에서 <b>유일하게 &ldquo;쓰지 않고 버는&rdquo; 항목</b>이에요. 10만원을 기부하면 <b>세액공제로 10만원을 그대로 돌려받고, 답례품을 3만원어치</b> 받아요. 계산해보면 실질 부담이 0원인데 3만원이 남는 구조예요. 모르고 지나가시는 분이 너무 많아서 이번 달에 꼭 넣고 싶었어요.</p>
+    <p class="htnsub">10만원을 기부하면 <b>세액공제로 10만원을 그대로 돌려받고, 답례품 3만원어치</b> 받는 고향사랑 기부제! 지난 연말정산에서 돌려받지 않고, <b>세금을 냈다면 꼭 활용</b>해보세요 :)</p>
 
     <span class="htndday">⏳ 올해 기부 마감까지 <span class="mono">D-52</span></span>
 
-    <div class="htncalc">
-      <div class="best">
-        <span class="top">10만원 기부하면</span>
-        <span class="big">+30,000원</span>
-        <ul>
-          <li><span>세액공제</span><span>100,000</span></li>
-          <li><span>답례품 (30%)</span><span>30,000</span></li>
-        </ul>
-        <div class="net"><span>순이득</span><span>+30,000</span></div>
-      </div>
-      <div>
-        <span class="top">20만원 기부하면</span>
-        <span class="big">+4,000원</span>
-        <ul>
-          <li><span>세액공제</span><span>144,000</span></li>
-          <li><span>답례품 (30%)</span><span>60,000</span></li>
-        </ul>
-        <div class="net"><span>순이득</span><span>+4,000</span></div>
-      </div>
-    </div>
-
-    <div class="htnrow"><span class="ic">공제율</span><span><b>10만원까지는 전액</b> 공제돼요. 10만원을 넘는 금액은 <b>20만원까지 44%</b>(지방소득세 포함), 그 위로는 16.5%고요. 참고로 <b>이 44% 구간은 2026년 1월 1일 이후 기부분부터 새로 생긴 거예요.</b> 작년까지는 16.5%였어서, 예전 글을 보고 계산하시면 숫자가 달라요.</span></div>
-    <div class="htnrow"><span class="ic">한도</span><span>1년에 <b>2,000만원</b>까지 기부할 수 있어요. 여러 지자체에 나눠 내도 합산이에요.</span></div>
-    <div class="htnrow"><span class="ic">지역</span><span><b>내 주민등록 주소지에는 기부할 수 없어요.</b> 기초단체와 광역단체 둘 다요. 서울에 사시면 <b>25개 구 전부와 서울시가 막히고</b>, 나머지 전국은 어디든 돼요.</span></div>
-    <div class="htnrow"><span class="ic">답례품</span><span>기부액의 <b>30%</b>만큼 포인트가 쌓이고, <b>내가 기부한 지자체의 답례품몰에서만</b> 쓸 수 있어요. 쌀이 압도적 1위고 그다음이 <b>대전 성심당 상품권</b>이에요. 한우, 사과, 굴비, 김치, 지역화폐도 인기고요. 받고 싶은 답례품이 있는 지자체를 골라서 기부하셔야 해요.</span></div>
-    <div class="htnrow"><span class="ic">방법</span><span><b>고향사랑e음</b> 사이트가 공식이고, 농협 창구나 <b>KB스타뱅킹·신한 SOL뱅크·하나원큐·NH올원뱅크</b> 같은 은행 앱에서도 돼요. 어느 쪽으로 내든 <b>세액공제는 똑같아요.</b></span></div>
 
     <div class="htnwarn">
       <span class="lbl">이건 꼭 확인하고 하세요</span>
@@ -1285,6 +1235,10 @@ html{scroll-behavior:smooth}
       <p>금액은 <b>10만원이 정답이에요.</b> 20만원도 올해부터 손해는 아니게 됐지만 순이득이 4천원뿐이라, 절세 효율만 보면 10만원이 압도적이에요. <b>딱 10만원만 하세요.</b></p>
       <p>그리고 <b>12월 31일 밤에 몰려요.</b> 인기 답례품은 그 전에 품절되고, 마감 직전엔 사이트도 느려져요. 저라면 <b>11월에 끝내버릴 것 같아요.</b> 어차피 할 거면 지금 하세요!</p>
     </div>
+
+    <a class="htncta2" href="https://www.ilovegohyang.go.kr/donation/guide1.html" target="_blank" rel="noopener">
+      <span>고향사랑기부제가 뭔가요?</span><span class="arw">&rarr;</span>
+    </a>
 
     <a class="htncta" href="https://www.ilovegohyang.go.kr" target="_blank" rel="noopener">
       <span>고향사랑e음에서 답례품 둘러보기</span><span class="arw">&rarr;</span>
