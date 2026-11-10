@@ -3782,7 +3782,7 @@ const CHEER_API = 'https://script.google.com/macros/s/AKfycbx8_cplz7cLFc-6cNPiSm
         list=document.getElementById('cheerlist'), nameEl=document.getElementById('cheername'),
         totEl=document.getElementById('cheertotal'), more=document.getElementById('cheermore'),
         prev=document.getElementById('cheerprev');
-  const LIVE=!!CHEER_API, PAGE=12;
+  const LIVE=!!CHEER_API, PAGE=3, MORE=12;
   let items=[], shown=PAGE, uid='', nick='', mine=null, touched=false;
 
   const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -3816,8 +3816,12 @@ const CHEER_API = 'https://script.google.com/macros/s/AKfycbx8_cplz7cLFc-6cNPiSm
       +(i.uid===uid?'<span class="mi">MY LETTER</span>':'')
       +'<span class="dt">'+fd(i.at)+'</span></div>'
       +'<p>'+esc(i.text)+'</p></div>').join('');
-    if(items.length>shown){ more.style.display='block'; more.textContent='남은 편지 '+(items.length-shown)+'통 더 보기'; }
-    else more.style.display='none';
+    if(items.length>shown){
+      more.style.display='block'; more.dataset.act='more';
+      more.textContent='남은 편지 '+(items.length-shown)+'통 더 보기';
+    } else if(shown>PAGE){
+      more.style.display='block'; more.dataset.act='fold'; more.textContent='접기';
+    } else more.style.display='none';
   }
 
   const lget=()=>{ try{ return JSON.parse(ls.g('bg_cheer_local')||'[]'); }catch(e){ return []; } };
@@ -3864,7 +3868,7 @@ const CHEER_API = 'https://script.google.com/macros/s/AKfycbx8_cplz7cLFc-6cNPiSm
     btn.disabled=false;
   });
 
-  more.addEventListener('click',()=>{ shown+=PAGE; render(); });
+  more.addEventListener('click',()=>{ if(more.dataset.act==='fold'){ shown=PAGE; render(); try{ list.scrollIntoView({block:'start'}); }catch(e){} return; } shown+=MORE; render(); });
   load();
 })();
 
