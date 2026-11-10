@@ -585,7 +585,7 @@ html{scroll-behavior:smooth}
 }
 .mvspec .v{font-weight:800;letter-spacing:-.03em}
 .mvspec .s{font-size:11px;font-weight:600;color:var(--mut);word-break:keep-all}
-.mvspec .r.two>span{display:flex;align-items:baseline;gap:6px}
+.mvspec .r.two>span{display:flex;align-items:baseline;gap:5px;flex-wrap:wrap}
 
 .mvbody{padding:12px 14px 14px;border-top:1px solid rgba(21,27,41,.1)}
 .mvsay{background:rgba(255,255,255,.72);border:1.5px solid rgba(94,134,201,.42);border-radius:11px;padding:11px 12px}
@@ -2340,8 +2340,7 @@ const STAR = `<svg class="star" viewBox="0 0 24 24" fill="#1F5138"><path d="M12 
       ? `<span><span class="k">통화/문자</span><span class="v">${p.call}</span></span>`
       : `${p.call?`<span><span class="k">통화</span><span class="v">${p.call}</span></span>`:''}${p.sms?`<span><span class="k">문자</span><span class="v">${p.sms}</span></span>`:''}`;
     const spec = p.data ? `
-      <div class="r two"><span><span class="k">데이터</span><span class="v">${p.data}</span></span>${cs}</div>
-      ${p.dataSub?`<div class="r"><span class="s">${p.dataSub}</span></div>`:''}` : '';
+      <div class="r two"><span><span class="k">데이터</span><span class="v">${p.data}</span>${p.dataSub?`<span class="s">(${p.dataSub})</span>`:''}</span>${cs}</div>` : '';
     return `
       <article class="mvcard" id="mv${i}">
         <div class="mvstrip" style="background:${p.color}"></div>
