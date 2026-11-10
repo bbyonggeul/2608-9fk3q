@@ -392,43 +392,92 @@ html{scroll-behavior:smooth}
 .expbtn .ic{font-size:9px;transition:transform .2s}
 .expbtn[aria-pressed="true"] .ic{transform:rotate(180deg)}
 
-/* ─── CHEER (연말 응원 한마디) ───────── */
-.cheer{margin:34px 14px 0;padding:22px 18px 20px;background:var(--paper2);
-  border:2px solid var(--line);border-radius:16px;box-shadow:4px 4px 0 rgba(21,27,41,.75)}
-.cheerhead{display:flex;align-items:baseline;gap:8px}
-.cheerhead h2{font-family:var(--display);font-size:22px;margin:0;letter-spacing:-.01em;color:var(--ink)}
-.cheerhead em{font-family:var(--mono);font-style:normal;font-size:9.5px;font-weight:700;letter-spacing:.08em;color:var(--mut)}
-.cheersub{font-size:12.5px;line-height:1.7;color:var(--mut);margin:8px 0 0;word-break:keep-all}
-.cheersub b{color:var(--ink);font-weight:700}
-.cheerbox{margin-top:14px;background:var(--lilac);border:1.5px solid var(--line);border-radius:12px;padding:12px}
-.cheerprev{display:none;margin:0 0 9px;font-size:10.5px;font-weight:700;line-height:1.55;color:#7A4E00;
-  background:rgba(240,176,60,.32);border:1px solid rgba(240,176,60,.75);border-radius:7px;padding:7px 9px;word-break:keep-all}
-.cheerme{font-size:11.5px;font-weight:700;color:var(--mut);margin-bottom:7px}
-.cheerme b{color:var(--green);font-size:13px}
-.cheer textarea{display:block;width:100%;box-sizing:border-box;min-height:86px;resize:vertical;
-  font-family:inherit;font-size:13px;line-height:1.65;color:var(--ink);
-  background:#fff;border:1.5px solid var(--line);border-radius:9px;padding:10px 11px}
-.cheer textarea:focus{outline:none;border-color:var(--peri);box-shadow:0 0 0 2.5px rgba(94,134,201,.25)}
-.cheerbar{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:9px}
-.cheerbar .cnt{font-family:var(--mono);font-size:11px;color:var(--mut)}
-.cheerbar button{flex:none;font-family:inherit;font-size:12.5px;font-weight:800;letter-spacing:-.02em;
-  color:var(--paper);background:var(--ink);border:none;border-radius:9px;padding:10px 18px;cursor:pointer}
+/* ─── CHEER (연말 응원 한마디 · 편지지) ───────── */
+.cheer{
+  --cream:#F4EFE3;--cream2:#FCF9F3;--tan:#D5CAB2;--wax:#A3303A;
+  --cink:#2A2419;--cmut:#6F6554;--cfaint:#A2967E;
+  margin:34px 14px 0;padding:19px 18px 22px;color:var(--cink);
+  background:var(--cream);border:2px solid var(--line);border-radius:6px;
+  box-shadow:4px 4px 0 rgba(21,27,41,.75);
+}
+.chmast{
+  display:flex;justify-content:space-between;align-items:center;gap:10px;
+  padding-bottom:7px;border-bottom:1.5px solid var(--cink);
+  font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.14em;color:#9A8F79;
+}
+.cheer h2{font-family:var(--display);font-size:24px;margin:14px 0 0;letter-spacing:-.01em;color:var(--cink)}
+.cheersub{font-size:12.5px;line-height:1.72;color:var(--cmut);margin:7px 0 0;word-break:keep-all}
+.cheersub b{color:var(--cink);font-weight:700}
+
+.cheerbox{
+  margin-top:15px;background:var(--cream2);border:1.5px solid var(--tan);border-radius:4px;
+  padding:13px 13px 12px;transition:border-color .15s,box-shadow .15s;
+}
+.cheerbox:focus-within{border-color:rgba(163,48,58,.55);box-shadow:0 0 0 3px rgba(163,48,58,.1)}
+.cheerprev{
+  display:none;margin:0 0 11px;font-size:10.5px;font-weight:700;line-height:1.55;color:#7A4E00;
+  background:rgba(240,176,60,.22);border:1px solid rgba(240,176,60,.6);border-radius:4px;
+  padding:7px 9px;word-break:keep-all;
+}
+.chfrom{
+  display:flex;align-items:baseline;gap:7px;padding-bottom:8px;margin-bottom:10px;
+  border-bottom:1px dashed var(--tan);
+}
+.chfrom .lb{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.14em;color:var(--cfaint)}
+.chfrom b{font-size:13px;font-weight:800;letter-spacing:-.02em;color:var(--wax)}
+.cheer textarea{
+  display:block;width:100%;box-sizing:border-box;min-height:70px;resize:vertical;
+  font-family:inherit;font-size:13px;line-height:1.78;color:var(--cink);
+  background:transparent;border:none;padding:0;outline:none;
+}
+.cheer textarea::placeholder{color:#BBB09A}
+.cheerbar{
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  margin-top:11px;padding-top:10px;border-top:1px dashed var(--tan);
+}
+.cheerbar .cnt{font-family:var(--mono);font-size:10.5px;letter-spacing:.02em;color:var(--cfaint)}
+.cheerbar .cnt b{color:var(--cmut);font-weight:700}
+.cheerbar button{
+  flex:none;font-family:inherit;font-size:12.5px;font-weight:800;letter-spacing:-.02em;
+  color:#FCF9F3;background:var(--wax);border:none;border-radius:999px;padding:9px 18px;cursor:pointer;
+}
 .cheerbar button:disabled{opacity:.45;cursor:default}
-.cheernote{margin:8px 0 0;font-size:11.5px;font-weight:700;line-height:1.5;color:#1F5E4E;word-break:keep-all}
-.cheernote.err{color:#B3303F}
-.cheertot{margin:16px 0 0;font-size:11.5px;font-weight:700;color:var(--mut)}
-.cheertot b{color:var(--ink)}
-.cheerlist{margin-top:9px;display:flex;flex-direction:column;gap:8px}
-.cmsg{background:#fff;border:1.5px solid rgba(21,27,41,.14);border-radius:11px;padding:11px 12px}
-.cmsg.mine{border-color:var(--butter);background:#FFFDF6;box-shadow:2px 2px 0 rgba(240,176,60,.55)}
-.cmsg .ct{display:flex;align-items:baseline;gap:7px;margin-bottom:5px}
-.cmsg .nk{font-size:12px;font-weight:800;letter-spacing:-.02em;color:var(--green)}
-.cmsg .mi{font-size:9.5px;font-weight:800;color:#7A4E00;background:rgba(240,176,60,.4);border-radius:5px;padding:2px 5px}
-.cmsg .dt{margin-left:auto;font-family:var(--mono);font-size:10px;color:var(--mut)}
-.cmsg p{margin:0;font-size:12.5px;line-height:1.68;color:var(--ink);word-break:break-word;white-space:pre-wrap}
-.cheermore{display:none;width:100%;margin-top:9px;font-family:inherit;font-size:12px;font-weight:800;
-  color:var(--ink);background:transparent;border:1.5px solid var(--line);border-radius:9px;padding:9px;cursor:pointer}
-.cheerempty{font-size:12px;line-height:1.7;color:var(--mut);text-align:center;padding:16px 0;word-break:keep-all}
+.cheernote{margin:9px 0 0;font-size:11.5px;font-weight:700;line-height:1.5;color:#3F6B57;word-break:keep-all}
+.cheernote.err{color:var(--wax)}
+
+.chrule{
+  display:flex;align-items:center;gap:5px;margin:21px 0 0;
+  font-size:11.5px;font-weight:700;letter-spacing:-.02em;color:var(--cmut);
+}
+.chrule b{font-family:var(--mono);font-size:13px;color:var(--wax)}
+.chrule::after{content:'';flex:1;height:1px;margin-left:6px;background:var(--tan)}
+
+.cheerlist{margin-top:11px;display:flex;flex-direction:column;gap:9px}
+.cmsg{background:var(--cream2);border:1.5px solid var(--tan);border-radius:4px;padding:12px 13px 13px}
+.cmsg.mine{border-color:rgba(163,48,58,.42);background:#FDF8F4}
+.cmsg .ct{
+  display:flex;align-items:baseline;gap:7px;padding-bottom:7px;margin-bottom:8px;
+  border-bottom:1px dashed var(--tan);
+}
+.cmsg .nk{font-size:12px;font-weight:800;letter-spacing:-.02em;color:var(--cink)}
+.cmsg.mine .nk{color:var(--wax)}
+.cmsg .mi{
+  font-family:var(--mono);font-size:8.5px;font-weight:700;letter-spacing:.08em;color:var(--wax);
+  border:1px solid rgba(163,48,58,.38);border-radius:3px;padding:1px 4px;
+}
+.cmsg .dt{margin-left:auto;font-family:var(--mono);font-size:10px;color:var(--cfaint)}
+.cmsg p{margin:0;font-size:12.5px;line-height:1.78;color:var(--cink);word-break:break-word;white-space:pre-wrap}
+
+.cheerempty{
+  margin:0;padding:20px 12px;font-size:12px;line-height:1.75;color:var(--cfaint);text-align:center;
+  background:rgba(252,249,243,.65);border:1px dashed var(--tan);border-radius:4px;word-break:keep-all;
+}
+.cheerempty b{display:block;margin-top:3px;font-size:12.5px;font-weight:800;color:var(--cmut)}
+.cheermore{
+  display:none;width:100%;margin-top:10px;font-family:inherit;font-size:11.5px;font-weight:800;
+  letter-spacing:-.02em;color:var(--cmut);background:transparent;border:1px dashed var(--tan);
+  border-radius:4px;padding:10px;cursor:pointer;
+}
 
 /* ─── HOMETOWN (고향사랑기부제) ───────── */
 .htn{
@@ -1144,24 +1193,22 @@ html{scroll-behavior:smooth}
   </header>
 
   <section class="cheer" id="cheer">
-    <div class="cheerhead">
-      <h2>뿅아리 응원 한마디</h2>
-      <em>2026 YEAR-END</em>
-    </div>
-    <p class="cheersub">올해도 다들 고생 많으셨어요! <b>올 한 해 내가 해낸 것</b> 자랑도 하고, 서로 응원도 한마디씩 남겨주세요. 닉네임은 <b>뿅아리1, 뿅아리2</b>처럼 자동으로 붙어요 :)</p>
+    <div class="chmast"><span>BBYONGGEUL . 2026</span><span>YEAR-END LETTER</span></div>
+    <h2>뿅아리 응원 한마디</h2>
+    <p class="cheersub">올해도 다들 고생 많으셨어요! <b>올 한 해 내가 해낸 것</b> 자랑도 하고, 서로 응원도 한마디씩 남겨주세요. 닉네임은 <b>뿅아리1, 뿅아리2</b>처럼 자동으로 붙어요.</p>
 
     <div class="cheerbox">
       <p class="cheerprev" id="cheerprev">⚙️ 미리보기 모드예요. 구글 시트 연결 전이라 내 브라우저에만 저장되고 다른 분께는 안 보여요.</p>
-      <div class="cheerme">내 닉네임은 <b id="cheername">아직 없어요</b></div>
-      <textarea id="cheertxt" maxlength="300" placeholder="올해 적금 1,000만원 모았어요! 중간에 포기할 뻔했는데 머니레터 보면서 버텼습니다ㅎㅎ 뿅아리들 올 한 해 다들 고생 많았어요~"></textarea>
+      <div class="chfrom"><span class="lb">FROM.</span><b id="cheername">아직 없어요</b></div>
+      <textarea id="cheertxt" maxlength="300" placeholder="올해 뿌듯했던 일, 뿅아리들에게 하고 싶은 말..."></textarea>
       <div class="cheerbar">
-        <span class="cnt"><b id="cheercnt">0</b> / 300자</span>
-        <button id="cheersend" type="button">응원 남기기</button>
+        <span class="cnt"><b id="cheercnt">0</b> / 300</span>
+        <button id="cheersend" type="button">응원 보내기</button>
       </div>
       <p class="cheernote" id="cheermsg"></p>
     </div>
 
-    <p class="cheertot">지금까지 <b id="cheertotal">0</b>명이 남겨주셨어요</p>
+    <p class="chrule"><span>도착한 편지</span><b id="cheertotal">0</b><span>통</span></p>
     <div class="cheerlist" id="cheerlist"></div>
     <button class="cheermore" id="cheermore" type="button">더 보기</button>
   </section>
@@ -3019,20 +3066,20 @@ const CHEER_API = 'https://script.google.com/macros/s/AKfycbx8_cplz7cLFc-6cNPiSm
   function render(){
     mine=items.filter(i=>i.uid===uid)[0]||null;
     nameEl.textContent = mine ? mine.nick : '아직 없어요';
-    btn.textContent = mine ? '응원 고치기' : '응원 남기기';
+    btn.textContent = mine ? '고쳐 보내기' : '응원 보내기';
     if(mine && !touched && !txt.value){ txt.value=mine.text; cnt.textContent=txt.value.length; }
     totEl.textContent = items.length;
     if(!items.length){
-      list.innerHTML='<p class="cheerempty">아직 아무도 안 남겼어요.<br>1번 뿅아리가 되어보실래요?</p>';
+      list.innerHTML='<p class="cheerempty">아직 도착한 편지가 없어요<b>첫 번째 편지를 보내보실래요?</b></p>';
       more.style.display='none'; return;
     }
     list.innerHTML = items.slice(0,shown).map(i=>
       '<div class="cmsg'+(i.uid===uid?' mine':'')+'">'
       +'<div class="ct"><span class="nk">'+esc(i.nick)+'</span>'
-      +(i.uid===uid?'<span class="mi">내 글</span>':'')
+      +(i.uid===uid?'<span class="mi">MY LETTER</span>':'')
       +'<span class="dt">'+fd(i.at)+'</span></div>'
       +'<p>'+esc(i.text)+'</p></div>').join('');
-    if(items.length>shown){ more.style.display='block'; more.textContent='더 보기 ('+(items.length-shown)+'개)'; }
+    if(items.length>shown){ more.style.display='block'; more.textContent='남은 편지 '+(items.length-shown)+'통 더 보기'; }
     else more.style.display='none';
   }
 
@@ -3054,13 +3101,13 @@ const CHEER_API = 'https://script.google.com/macros/s/AKfycbx8_cplz7cLFc-6cNPiSm
     const t=txt.value.trim();
     if(!t){ say('한마디만 적어주세요!',1); txt.focus(); return; }
     const was=!!mine;
-    btn.disabled=true; say('올리는 중이에요...');
+    btn.disabled=true; say('보내는 중이에요...');
     if(!LIVE){
       const a=lget().filter(x=>x.uid!==uid);
       const n = was ? mine.n : a.length+1;
       a.push({n:n, nick:'뿅아리'+n, uid:uid, text:t, at:new Date().toISOString()});
       a.sort((x,y)=>y.n-x.n); lset(a); items=a; touched=false; render();
-      say(was?'고쳤어요! (미리보기 모드)':'올렸어요! (미리보기 모드)');
+      say(was?'고쳐 보냈어요! (미리보기 모드)':'보냈어요! (미리보기 모드)');
       btn.disabled=false; return;
     }
     try{
@@ -3073,9 +3120,9 @@ const CHEER_API = 'https://script.google.com/macros/s/AKfycbx8_cplz7cLFc-6cNPiSm
       items.push({n:j.n, nick:j.nick, uid:uid, text:t, at:j.at||new Date().toISOString()});
       items.sort((x,y)=>(y.n||0)-(x.n||0));
       touched=false; render();
-      say(was?'고쳤어요! 고마워요 :)':'올렸어요! 고마워요 :)');
+      say(was?'고쳐 보냈어요! 고마워요 :)':'잘 도착했어요! 고마워요 :)');
       load();
-    }catch(e){ say('지금은 안 올라가네요. 잠시 뒤에 다시 눌러주세요!',1); }
+    }catch(e){ say('지금은 안 보내지네요. 잠시 뒤에 다시 눌러주세요!',1); }
     btn.disabled=false;
   });
 
