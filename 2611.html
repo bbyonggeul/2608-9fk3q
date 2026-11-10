@@ -399,12 +399,7 @@ html{scroll-behavior:smooth}
   margin:0;padding:28px 20px 32px;color:var(--cink);
   background:var(--cream);position:relative;
 }
-.chmast{
-  display:flex;justify-content:space-between;align-items:center;gap:10px;
-  padding-bottom:7px;border-bottom:1.5px solid var(--cink);
-  font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.14em;color:#9A8F79;
-}
-.cheer h2{font-family:var(--display);font-size:24px;margin:14px 0 0;letter-spacing:-.01em;color:var(--cink)}
+.cheer h2{font-family:var(--display);font-size:24px;margin:0;letter-spacing:-.01em;color:var(--cink)}
 .cheersub{font-size:12.5px;line-height:1.72;color:var(--cmut);margin:7px 0 0;word-break:keep-all}
 .cheersub b{color:var(--cink);font-weight:700}
 
@@ -1192,14 +1187,13 @@ html{scroll-behavior:smooth}
   </header>
 
   <section class="cheer" id="cheer">
-    <div class="chmast"><span>BBYONGGEUL . 2026</span><span>YEAR-END LETTER</span></div>
     <h2>뿅아리 응원 한마디</h2>
-    <p class="cheersub">올해도 다들 고생 많으셨어요! <b>올 한 해 내가 해낸 것</b> 자랑도 하고, 서로 응원도 한마디씩 남겨주세요. 닉네임은 <b>뿅아리1, 뿅아리2</b>처럼 자동으로 붙어요.</p>
+    <p class="cheersub">올해도 다들 고생 많으셨어요! <b>올 한 해 내가 해낸 것</b> 자랑도 하고, 서로 응원도 한마디씩 남겨주세요. 닉네임은 <b>자동으로 번호가 붙으니</b> 그냥 편하게 적어주세요.</p>
 
     <div class="cheerbox">
       <p class="cheerprev" id="cheerprev">⚙️ 미리보기 모드예요. 구글 시트 연결 전이라 내 브라우저에만 저장되고 다른 분께는 안 보여요.</p>
       <div class="chfrom"><span class="lb">FROM.</span><b id="cheername">아직 없어요</b></div>
-      <textarea id="cheertxt" maxlength="300" placeholder="올해 뿌듯했던 일, 뿅아리들에게 하고 싶은 말..."></textarea>
+      <textarea id="cheertxt" maxlength="300" placeholder="올해 뿌듯했던 일, 다른 뿅아리들에게 하고 싶은 말"></textarea>
       <div class="cheerbar">
         <span class="cnt"><b id="cheercnt">0</b> / 300</span>
         <button id="cheersend" type="button">응원 보내기</button>
@@ -3048,7 +3042,7 @@ const CHEER_API = 'https://script.google.com/macros/s/AKfycbx8_cplz7cLFc-6cNPiSm
         totEl=document.getElementById('cheertotal'), more=document.getElementById('cheermore'),
         prev=document.getElementById('cheerprev');
   const LIVE=!!CHEER_API, PAGE=12;
-  let items=[], shown=PAGE, uid='', mine=null, touched=false;
+  let items=[], shown=PAGE, uid='', nick='', mine=null, touched=false;
 
   const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const ls={g(k){try{return localStorage.getItem(k)}catch(e){return null}},
@@ -3056,6 +3050,8 @@ const CHEER_API = 'https://script.google.com/macros/s/AKfycbx8_cplz7cLFc-6cNPiSm
 
   uid=ls.g('bg_cheer_uid')||'';
   if(!uid){ uid='u'+Date.now().toString(36)+Math.random().toString(36).slice(2,8); ls.s('bg_cheer_uid',uid); }
+  nick=ls.g('bg_cheer_nick')||'';
+  if(!/^뿅아리[0-9]{1,6}$/.test(nick)){ nick='뿅아리'+(1000+Math.floor(Math.random()*9000)); ls.s('bg_cheer_nick',nick); }
   if(!LIVE) prev.style.display='block';
 
   const p2=n=>String(n).padStart(2,'0');
@@ -3064,7 +3060,8 @@ const CHEER_API = 'https://script.google.com/macros/s/AKfycbx8_cplz7cLFc-6cNPiSm
 
   function render(){
     mine=items.filter(i=>i.uid===uid)[0]||null;
-    nameEl.textContent = mine ? mine.nick : '아직 없어요';
+    if(mine&&mine.nick){ nick=mine.nick; ls.s('bg_cheer_nick',nick); }
+    nameEl.textContent = nick;
     btn.textContent = mine ? '고쳐 보내기' : '응원 보내기';
     if(mine && !touched && !txt.value){ txt.value=mine.text; cnt.textContent=txt.value.length; }
     totEl.textContent = items.length;
@@ -3104,7 +3101,7 @@ const CHEER_API = 'https://script.google.com/macros/s/AKfycbx8_cplz7cLFc-6cNPiSm
     if(!LIVE){
       const a=lget().filter(x=>x.uid!==uid);
       const n = was ? mine.n : a.length+1;
-      a.push({n:n, nick:'뿅아리'+n, uid:uid, text:t, at:new Date().toISOString()});
+      a.push({n:n, nick:nick, uid:uid, text:t, at:new Date().toISOString()});
       a.sort((x,y)=>y.n-x.n); lset(a); items=a; touched=false; render();
       say(was?'고쳐 보냈어요! (미리보기 모드)':'보냈어요! (미리보기 모드)');
       btn.disabled=false; return;
@@ -3112,11 +3109,12 @@ const CHEER_API = 'https://script.google.com/macros/s/AKfycbx8_cplz7cLFc-6cNPiSm
     try{
       const r=await fetch(CHEER_API,{method:'POST',
         headers:{'Content-Type':'text/plain;charset=utf-8'},
-        body:JSON.stringify({uid:uid,text:t})});
+        body:JSON.stringify({uid:uid,nick:nick,text:t})});
       const j=await r.json();
       if(!j||!j.ok) throw new Error('fail');
+      if(j.nick){ nick=j.nick; ls.s('bg_cheer_nick',nick); }
       items=items.filter(x=>x.uid!==uid);
-      items.push({n:j.n, nick:j.nick, uid:uid, text:t, at:j.at||new Date().toISOString()});
+      items.push({n:j.n, nick:nick, uid:uid, text:t, at:j.at||new Date().toISOString()});
       items.sort((x,y)=>(y.n||0)-(x.n||0));
       touched=false; render();
       say(was?'고쳐 보냈어요! 고마워요 :)':'잘 도착했어요! 고마워요 :)');

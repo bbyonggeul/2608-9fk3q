@@ -22,6 +22,8 @@
  *  - 지우고 싶은 글은 F열(숨김)에 TRUE 를 넣으면 레터에서 바로 안 보여요.
  *    (행을 통째로 지우면 번호가 꼬일 수 있어서 숨김 처리를 추천드려요)
  *  - 한 사람당 한 글이고, 다시 쓰면 기존 글이 덮어써져요.
+ *  - 닉네임(뿅아리1234)은 레터가 만들어 보내고, 겹치면 여기서 다른 번호로 바꿔줘요.
+ *    B열 닉네임을 직접 고쳐도 되는데, 다른 사람과 겹치지 않게만 해주세요.
  *
  * 코드를 고친 뒤에는 [배포] > [배포 관리] > 연필(수정) > 버전 "새 버전" > [배포]
  * 를 해야 반영돼요. 이때 URL은 그대로라 레터는 안 고쳐도 됩니다.
@@ -94,6 +96,7 @@ function doPost(e) {
   try {
     var body = JSON.parse((e && e.postData && e.postData.contents) || '{}');
     var uid = String(body.uid || '').slice(0, 64);
+    var want = String(body.nick || '').trim().slice(0, 20);
     var text = String(body.text || '').replace(/\r/g, '').trim().slice(0, MAX_LEN);
     if (!uid || !text) return json_({ ok: false, error: 'empty' });
 
@@ -118,16 +121,24 @@ function doPost(e) {
       sh.getRange(rowIdx, 4).setValue(text);
       sh.getRange(rowIdx, 5).setValue(now);
     } else {
-      // 처음 쓰는 사람 -> 다음 번호 부여
+      // 처음 쓰는 사람 -> 순번(n)과 닉네임을 새로 부여
       n = 1;
+      var used = {};
       if (last > 1) {
-        var nums = sh.getRange(2, 1, last - 1, 1).getValues();
-        for (var k = 0; k < nums.length; k++) {
-          var v = Number(nums[k][0]) || 0;
+        var old = sh.getRange(2, 1, last - 1, 2).getValues();
+        for (var k = 0; k < old.length; k++) {
+          var v = Number(old[k][0]) || 0;
           if (v >= n) n = v + 1;
+          used[String(old[k][1]).trim()] = true;
         }
       }
-      nick = '뿅아리' + n;
+      // 레터가 보내온 번호를 그대로 쓰되, 이미 쓰는 사람이 있으면 다른 번호로
+      nick = (/^뿅아리[0-9]{1,6}$/.test(want) && !used[want]) ? want : '';
+      for (var g = 0; !nick && g < 400; g++) {
+        var cand = '뿅아리' + (1000 + Math.floor(Math.random() * 9000));
+        if (!used[cand]) nick = cand;
+      }
+      if (!nick) nick = '뿅아리' + (Date.now() % 1000000);
       sh.appendRow([n, nick, uid, text, now, false]);
     }
 
