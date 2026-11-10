@@ -572,15 +572,20 @@ html{scroll-behavior:smooth}
   background:rgba(110,36,57,.10);color:#A83A54;
 }
 
-.mvspec{display:flex;border-top:1px dashed rgba(21,27,41,.22)}
-.mvspec div{
-  flex:1;padding:10px 6px;text-align:center;
-  border-right:1px dashed rgba(21,27,41,.22);
+.mvspec{
+  border-top:1px dashed rgba(21,27,41,.22);
+  padding:9px 14px;display:flex;flex-direction:column;gap:4px;
+  font-size:12px;letter-spacing:-.025em;
 }
-.mvspec div:last-child{border-right:none}
-.mvspec .k{font-size:9.5px;font-weight:700;color:var(--mut);letter-spacing:-.02em}
-.mvspec .v{font-size:13px;font-weight:800;letter-spacing:-.03em;margin-top:2px;word-break:keep-all;line-height:1.35}
-.mvspec .s{font-size:10px;color:var(--mut);margin-top:1px;letter-spacing:-.02em}
+.mvspec .r{display:flex;align-items:baseline;gap:7px;flex-wrap:wrap}
+.mvspec .r.two{gap:14px}
+.mvspec .k{
+  font-size:9.5px;font-weight:800;color:var(--mut);flex:none;
+  background:rgba(21,27,41,.07);border-radius:4px;padding:2px 5px;
+}
+.mvspec .v{font-weight:800;letter-spacing:-.03em}
+.mvspec .s{font-size:11px;font-weight:600;color:var(--mut);word-break:keep-all}
+.mvspec .r.two>span{display:flex;align-items:baseline;gap:6px}
 
 .mvbody{padding:12px 14px 14px;border-top:1px solid rgba(21,27,41,.1)}
 .mvsay{background:rgba(255,255,255,.72);border:1.5px solid rgba(94,134,201,.42);border-radius:11px;padding:11px 12px}
@@ -605,6 +610,13 @@ html{scroll-behavior:smooth}
   font-size:13px;font-weight:700;text-decoration:none;letter-spacing:-.02em;
 }
 .mvcta .arw{font-family:var(--mono);font-size:12px}
+.mvref{
+  display:flex;align-items:center;justify-content:center;gap:7px;margin-top:7px;
+  background:#FAE100;color:#1A1A1A;border:1.5px solid var(--line);border-radius:10px;padding:10px;
+  font-size:12.5px;font-weight:800;text-decoration:none;letter-spacing:-.02em;
+  box-shadow:2px 2px 0 rgba(21,27,41,.75);
+}
+.mvref .arw{font-family:var(--mono);font-size:12px}
 .mvfoot{position:relative;font-size:11px;line-height:1.65;color:#8A5A68;margin:14px 0 0;word-break:keep-all}
 
 /* ─── BROKER ───────────────────────────── */
@@ -1160,7 +1172,7 @@ html{scroll-behavior:smooth}
     <div class="mvhead">
       <h2>알뜰폰 요금제 추천</h2>
     </div>
-    <p class="mvsub">통신비는 <b>한 번 바꾸면 매달 아껴지는 고정비</b>예요. 가입할 때 <b>'번호이동'</b>을 고르시면 쓰던 번호 그대로 통신사만 바뀝니다!</p>
+    <p class="mvsub">통신비는 <b>한 번 바꾸면 매달 아껴지는 고정비</b>예요. 가입할 때 <b>'번호이동'</b>을 고르시면 쓰던 번호 그대로 통신사만 바뀝니다! <b>뿅아리들, 이번 달에는 심지어 가격을 돌려받는 요금제도 있어요!</b></p>
     <div id="mvlist"></div>
     <p class="mvfoot" id="mvfoot"></p>
   </section>
@@ -1315,9 +1327,10 @@ const MVNO = {
       data:'무제한', dataSub:'11GB + 매일 2GB, 소진 후 3Mbps',
       call:'기본제공', sms:'기본제공',
       badges:['11월 15일 마감','네이버페이 32만원','조건 4개를 다 맞춰야','약정 없음'],
-      say:'<b>이번 달 제일 싼 조합이에요.</b> 데이터는 2·3번과 똑같은 11GB + 매일 2GB + 3Mbps고요.<br><br>기본 요금 37,190원에 받는 게 이만큼이에요.<br>· <b>셀프개통 코드 네이버페이 18만원</b> (3만원 &times; 6개월)<br>· <b>친구추천 링크 가입 9만원</b> (1만 5천원 &times; 6개월)<br>· <b>현대홈쇼핑 추가 5만원</b> (27년 2월 23일 일시)<br>· <b>Hmall 적립금 5,000원</b> (24개월)<br><br><b>8개월이면 요금 29만 7천원을 내고 35만 5천원을 받아요.</b> 통신비를 내는 게 아니라 <b>5만 7천원을 버는 셈</b>이에요.<br><br><b>현대홈쇼핑 할인쿠폰 1만 5천원은 뺐어요.</b> 3만원·5만원 이상 사야 쓰는 쿠폰이라 현금이 아니거든요. 현대홈쇼핑을 원래 보신다면 그만큼 더 이득이에요.',
+      say:'<b>이번 달 제일 싼 조합이에요.</b> 데이터는 2·3번과 똑같은 11GB + 매일 2GB + 3Mbps고요.<br><br>기본 요금 37,190원에 받는 게 이만큼이에요.<br>· <b>셀프개통 코드 네이버페이 18만원</b> (3만원 &times; 6개월)<br>· <b>친구추천 링크 가입 9만원</b> (1만 5천원 &times; 6개월)<br>· <b>현대홈쇼핑 추가 5만원</b> (27년 2월 23일 일시)<br>· <b>Hmall 적립금 5,000원</b> (24개월)<br><br><b>8개월이면 요금 29만 7천원을 내고 35만 5천원을 받아요.</b> 통신비를 내는 게 아니라 <b>5만 7천원을 버는 셈</b>이에요. (심지어 <b>현대홈쇼핑 할인쿠폰 1만 5천원은 뺀 금액</b>입니다. 3만원·5만원 이상 사야 쓰는 쿠폰이라 현금이 아니거든요. 만약 현대홈쇼핑을 원래 애용하신다면 그만큼 더 이득이겠죠?)',
       exit:'<b>2027년 6월 말에 갈아타세요.</b> 네이버페이 마지막 회차가 <b>6월 23일</b>에 들어와요.<br>그 뒤로는 적립금 5천원만 남는데 요금이 37,190원이라 바로 손해로 돌아섭니다.',
       warn:'<b>조건 네 개를 다 맞춰야 해요.</b><br><b>① 가입신청서 맨 마지막 칸에 코드 &ldquo;셀프개통&rdquo; 입력</b> + 실제 셀프개통. 가입할 때 안 넣으면 나중에 못 넣어요. 18만원이 날아갑니다.<br><b>② 친구추천 링크로 가입</b> + <b>개통 5~7일 뒤 알림톡에서 사은품 선택.</b> D+14 자정을 넘기면 끝이에요. 이것만 놓쳐도 9만원이 빠져서 <b>3만 2천원을 내는 쪽</b>으로 바뀝니다.<br><b>③ Hmall 계정을 개통 다음 달 14일 안에</b> 가입.<br><b>④ 직영몰에서 직접 가입.</b> 전화 신청과 미성년자는 제외예요.<br><br><b>11월 15일 마감</b>이고 <b>번호이동·신규가입만</b> 됩니다.',
+      ref:'https://open.kakao.com/o/g98LDOzg',
       link:'https://direct.lghellovision.net/event/viewEventDetailGuest.do?returnTab=allli&idxOfEvent=8231' },
 
     { carrier:'LG헬로모바일', color:'#E51937',
@@ -1335,6 +1348,7 @@ const MVNO = {
       say:'<b>알뜰폰에서 제일 많이 찾는 조합이에요.</b> 11GB에 매일 2GB를 다 쓰고도 <b>3Mbps로 계속</b> 되거든요. 3Mbps면 유튜브 480~720p가 끊기지 않아서 사실상 무제한처럼 씁니다.<br><br><b>&ldquo;월 1,730원&rdquo;은 페이백을 뺀 체감가예요.</b> 실제로는 <b>매달 35,730원이 빠져나가고</b> 모요 포인트 2만 9천원(7개월)과 네이버페이 5천원(24개월)으로 돌아옵니다.<br><br><b>7개월이면 요금 25만원을 내고 25만 8천원을 받아서 7,890원이 남아요.</b>',
       exit:'<b>7개월 채우고 갈아타세요.</b> 모요 포인트 2만 9천원이 7개월로 끝나거든요.<br>8개월째부터 체감가가 <b>30,730원</b>으로 뜁니다. 네이버페이 5천원이 24개월짜리긴 한데, 그거 받자고 매달 3만원을 더 낼 이유는 없어요.',
       warn:'<b>페이백을 못 받으면 그냥 비싼 요금제예요.</b> 모요 포인트는 요금 낸 달부터 <b>매달 말일</b>, 네이버페이는 <b>매달 23일</b>에 들어와요. 한 달이라도 빠지면 바로 문의하세요.<br><br><b>모요 포인트는 현금이 아니에요.</b> 포인트몰에서 바꿔 써야 해서 쓸 데가 없으면 체감이 확 떨어집니다.<br><br><b>유심만 되고 eSIM은 안 돼요.</b> 기존 U+ 인터넷 가입자는 결합도 안 됩니다.',
+      ref:'https://open.kakao.com/o/g98LDOzg',
       link:'https://www.moyoplan.com/plans/37916' },
 
     { carrier:'티플러스', color:'#8A5A3C',
@@ -2322,8 +2336,12 @@ const STAR = `<svg class="star" viewBox="0 0 24 24" fill="#1F5138"><path d="M12 
   if(!plans.length){ if(sec) sec.style.display='none'; return; }
 
   box.innerHTML = plans.map((p,i)=>{
-    const cell = (k,v,s)=> v ? `<div><div class="k">${k}</div><div class="v">${v}</div>${s?`<div class="s">${s}</div>`:''}</div>` : '';
-    const spec = [cell('데이터',p.data,p.dataSub), cell('통화',p.call), cell('문자',p.sms)].join('');
+    const spec = p.data ? `
+      <div class="r"><span class="k">데이터</span><span class="v">${p.data}</span>${p.dataSub?`<span class="s">${p.dataSub}</span>`:''}</div>
+      <div class="r two">
+        ${p.call?`<span><span class="k">통화</span><span class="v">${p.call}</span></span>`:''}
+        ${p.sms?`<span><span class="k">문자</span><span class="v">${p.sms}</span></span>`:''}
+      </div>` : '';
     return `
       <article class="mvcard" id="mv${i}">
         <div class="mvstrip" style="background:${p.color}"></div>
@@ -2347,7 +2365,6 @@ const STAR = `<svg class="star" viewBox="0 0 24 24" fill="#1F5138"><path d="M12 
             <b>${p.calc.real}</b>
             ${p.calc.note?`<span class="cap">${p.calc.note}</span>`:''}
           </div>`:''}
-          ${(p.badges&&p.badges.length)?`<div class="mvbadges">${p.badges.map(b=>`<span>${b}</span>`).join('')}</div>`:''}
         </div>
         ${spec?`<div class="mvspec">${spec}</div>`:''}
         ${(p.say||p.warn||p.link)?`<div class="mvbody">
@@ -2355,6 +2372,7 @@ const STAR = `<svg class="star" viewBox="0 0 24 24" fill="#1F5138"><path d="M12 
           ${p.exit?`<div class="mvexit"><span class="lbl">⏱ 언제까지 쓰고 갈아탈까</span>${p.exit}</div>`:''}
           ${p.warn?`<div class="mvwarn">${p.warn}</div>`:''}
           ${p.link?`<a class="mvcta" href="${p.link}" target="_blank" rel="noopener"><span>요금제 보러 가기</span><span class="arw">\u2192</span></a>`:''}
+          ${p.ref?`<a class="mvref" href="${p.ref}" target="_blank" rel="noopener"><span>친구추천 링크 받기</span><span class="arw">\u2192</span></a>`:''}
         </div>`:''}
       </article>`;
   }).join('');
