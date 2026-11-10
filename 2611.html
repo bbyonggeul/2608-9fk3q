@@ -62,7 +62,7 @@ html{scroll-behavior:smooth}
 }
 .snav a.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
 .wrap{padding-top:50px}
-#rec,#cardsec,#save,#htn,#mvno,#brk,#fest{scroll-margin-top:58px}
+#cheer,#rec,#cardsec,#save,#htn,#mvno,#brk,#fest{scroll-margin-top:58px}
 @media (max-width:380px){ .snav a{font-size:11px;padding:6px 9px} }
 
 .wrap{
@@ -391,6 +391,44 @@ html{scroll-behavior:smooth}
 .expbtn:active{background:rgba(21,27,41,.08)}
 .expbtn .ic{font-size:9px;transition:transform .2s}
 .expbtn[aria-pressed="true"] .ic{transform:rotate(180deg)}
+
+/* ─── CHEER (연말 응원 한마디) ───────── */
+.cheer{margin:34px 14px 0;padding:22px 18px 20px;background:var(--paper2);
+  border:2px solid var(--line);border-radius:16px;box-shadow:4px 4px 0 rgba(21,27,41,.75)}
+.cheerhead{display:flex;align-items:baseline;gap:8px}
+.cheerhead h2{font-family:var(--display);font-size:22px;margin:0;letter-spacing:-.01em;color:var(--ink)}
+.cheerhead em{font-family:var(--mono);font-style:normal;font-size:9.5px;font-weight:700;letter-spacing:.08em;color:var(--mut)}
+.cheersub{font-size:12.5px;line-height:1.7;color:var(--mut);margin:8px 0 0;word-break:keep-all}
+.cheersub b{color:var(--ink);font-weight:700}
+.cheerbox{margin-top:14px;background:var(--lilac);border:1.5px solid var(--line);border-radius:12px;padding:12px}
+.cheerprev{display:none;margin:0 0 9px;font-size:10.5px;font-weight:700;line-height:1.55;color:#7A4E00;
+  background:rgba(240,176,60,.32);border:1px solid rgba(240,176,60,.75);border-radius:7px;padding:7px 9px;word-break:keep-all}
+.cheerme{font-size:11.5px;font-weight:700;color:var(--mut);margin-bottom:7px}
+.cheerme b{color:var(--green);font-size:13px}
+.cheer textarea{display:block;width:100%;box-sizing:border-box;min-height:86px;resize:vertical;
+  font-family:inherit;font-size:13px;line-height:1.65;color:var(--ink);
+  background:#fff;border:1.5px solid var(--line);border-radius:9px;padding:10px 11px}
+.cheer textarea:focus{outline:none;border-color:var(--peri);box-shadow:0 0 0 2.5px rgba(94,134,201,.25)}
+.cheerbar{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:9px}
+.cheerbar .cnt{font-family:var(--mono);font-size:11px;color:var(--mut)}
+.cheerbar button{flex:none;font-family:inherit;font-size:12.5px;font-weight:800;letter-spacing:-.02em;
+  color:var(--paper);background:var(--ink);border:none;border-radius:9px;padding:10px 18px;cursor:pointer}
+.cheerbar button:disabled{opacity:.45;cursor:default}
+.cheernote{margin:8px 0 0;font-size:11.5px;font-weight:700;line-height:1.5;color:#1F5E4E;word-break:keep-all}
+.cheernote.err{color:#B3303F}
+.cheertot{margin:16px 0 0;font-size:11.5px;font-weight:700;color:var(--mut)}
+.cheertot b{color:var(--ink)}
+.cheerlist{margin-top:9px;display:flex;flex-direction:column;gap:8px}
+.cmsg{background:#fff;border:1.5px solid rgba(21,27,41,.14);border-radius:11px;padding:11px 12px}
+.cmsg.mine{border-color:var(--butter);background:#FFFDF6;box-shadow:2px 2px 0 rgba(240,176,60,.55)}
+.cmsg .ct{display:flex;align-items:baseline;gap:7px;margin-bottom:5px}
+.cmsg .nk{font-size:12px;font-weight:800;letter-spacing:-.02em;color:var(--green)}
+.cmsg .mi{font-size:9.5px;font-weight:800;color:#7A4E00;background:rgba(240,176,60,.4);border-radius:5px;padding:2px 5px}
+.cmsg .dt{margin-left:auto;font-family:var(--mono);font-size:10px;color:var(--mut)}
+.cmsg p{margin:0;font-size:12.5px;line-height:1.68;color:var(--ink);word-break:break-word;white-space:pre-wrap}
+.cheermore{display:none;width:100%;margin-top:9px;font-family:inherit;font-size:12px;font-weight:800;
+  color:var(--ink);background:transparent;border:1.5px solid var(--line);border-radius:9px;padding:9px;cursor:pointer}
+.cheerempty{font-size:12px;line-height:1.7;color:var(--mut);text-align:center;padding:16px 0;word-break:keep-all}
 
 /* ─── HOMETOWN (고향사랑기부제) ───────── */
 .htn{
@@ -1071,6 +1109,7 @@ html{scroll-behavior:smooth}
 
   <nav class="snav" aria-label="섹션 바로가기">
     <div class="in">
+      <a href="#cheer">응원</a>
       <a href="#rec">신용카드</a>
       <a href="#cardsec">카드사</a>
       <a href="#save">목돈</a>
@@ -1103,6 +1142,29 @@ html{scroll-behavior:smooth}
     </div>
 
   </header>
+
+  <section class="cheer" id="cheer">
+    <div class="cheerhead">
+      <h2>뿅아리 응원 한마디</h2>
+      <em>2026 YEAR-END</em>
+    </div>
+    <p class="cheersub">올해도 다들 고생 많으셨어요! <b>올 한 해 내가 해낸 것</b> 자랑도 하고, 서로 응원도 한마디씩 남겨주세요. 닉네임은 <b>뿅아리1, 뿅아리2</b>처럼 자동으로 붙어요 :)</p>
+
+    <div class="cheerbox">
+      <p class="cheerprev" id="cheerprev">⚙️ 미리보기 모드예요. 구글 시트 연결 전이라 내 브라우저에만 저장되고 다른 분께는 안 보여요.</p>
+      <div class="cheerme">내 닉네임은 <b id="cheername">아직 없어요</b></div>
+      <textarea id="cheertxt" maxlength="300" placeholder="올해 적금 1,000만원 모았어요! 중간에 포기할 뻔했는데 머니레터 보면서 버텼습니다ㅎㅎ 뿅아리들 올 한 해 다들 고생 많았어요~"></textarea>
+      <div class="cheerbar">
+        <span class="cnt"><b id="cheercnt">0</b> / 300자</span>
+        <button id="cheersend" type="button">응원 남기기</button>
+      </div>
+      <p class="cheernote" id="cheermsg"></p>
+    </div>
+
+    <p class="cheertot">지금까지 <b id="cheertotal">0</b>명이 남겨주셨어요</p>
+    <div class="cheerlist" id="cheerlist"></div>
+    <button class="cheermore" id="cheermore" type="button">더 보기</button>
+  </section>
 
   <section class="rec" id="rec">
     <div class="rechead">
@@ -2927,6 +2989,96 @@ function jump(id){
 
 
 /* ── 상단 네비 현재 위치 표시 ── */
+/* ── 연말 응원 한마디 ────────────────────────────────
+   구글 앱스스크립트를 배포한 뒤 아래 따옴표 안에 /exec 주소를 붙여넣으세요.
+   비워두면 "미리보기 모드"로 내 브라우저에만 저장돼요.          */
+const CHEER_API = '';
+
+(function(){
+  const sec=document.getElementById('cheer'); if(!sec) return;
+  const txt=document.getElementById('cheertxt'), btn=document.getElementById('cheersend'),
+        cnt=document.getElementById('cheercnt'), msg=document.getElementById('cheermsg'),
+        list=document.getElementById('cheerlist'), nameEl=document.getElementById('cheername'),
+        totEl=document.getElementById('cheertotal'), more=document.getElementById('cheermore'),
+        prev=document.getElementById('cheerprev');
+  const LIVE=!!CHEER_API, PAGE=12;
+  let items=[], shown=PAGE, uid='', mine=null, touched=false;
+
+  const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const ls={g(k){try{return localStorage.getItem(k)}catch(e){return null}},
+            s(k,v){try{localStorage.setItem(k,v)}catch(e){}}};
+
+  uid=ls.g('bg_cheer_uid')||'';
+  if(!uid){ uid='u'+Date.now().toString(36)+Math.random().toString(36).slice(2,8); ls.s('bg_cheer_uid',uid); }
+  if(!LIVE) prev.style.display='block';
+
+  const p2=n=>String(n).padStart(2,'0');
+  const fd=v=>{const d=new Date(v); return isNaN(d.getTime())?'':p2(d.getMonth()+1)+'.'+p2(d.getDate());};
+  const say=(t,bad)=>{ msg.textContent=t||''; msg.className='cheernote'+(bad?' err':''); };
+
+  function render(){
+    mine=items.filter(i=>i.uid===uid)[0]||null;
+    nameEl.textContent = mine ? mine.nick : '아직 없어요';
+    btn.textContent = mine ? '응원 고치기' : '응원 남기기';
+    if(mine && !touched && !txt.value){ txt.value=mine.text; cnt.textContent=txt.value.length; }
+    totEl.textContent = items.length;
+    if(!items.length){
+      list.innerHTML='<p class="cheerempty">아직 아무도 안 남겼어요.<br>1번 뿅아리가 되어보실래요?</p>';
+      more.style.display='none'; return;
+    }
+    list.innerHTML = items.slice(0,shown).map(i=>
+      '<div class="cmsg'+(i.uid===uid?' mine':'')+'">'
+      +'<div class="ct"><span class="nk">'+esc(i.nick)+'</span>'
+      +(i.uid===uid?'<span class="mi">내 글</span>':'')
+      +'<span class="dt">'+fd(i.at)+'</span></div>'
+      +'<p>'+esc(i.text)+'</p></div>').join('');
+    if(items.length>shown){ more.style.display='block'; more.textContent='더 보기 ('+(items.length-shown)+'개)'; }
+    else more.style.display='none';
+  }
+
+  const lget=()=>{ try{ return JSON.parse(ls.g('bg_cheer_local')||'[]'); }catch(e){ return []; } };
+  const lset=a=>ls.s('bg_cheer_local',JSON.stringify(a));
+
+  async function load(){
+    if(!LIVE){ items=lget(); render(); return; }
+    try{
+      const r=await fetch(CHEER_API+'?t='+Date.now());
+      const j=await r.json();
+      if(j&&j.ok&&Array.isArray(j.items)){ items=j.items; render(); }
+    }catch(e){ render(); }
+  }
+
+  txt.addEventListener('input',()=>{ touched=true; cnt.textContent=txt.value.length; });
+
+  btn.addEventListener('click',async()=>{
+    const t=txt.value.trim();
+    if(!t){ say('한마디만 적어주세요!',1); txt.focus(); return; }
+    const was=!!mine;
+    btn.disabled=true; say('올리는 중이에요...');
+    if(!LIVE){
+      const a=lget().filter(x=>x.uid!==uid);
+      const n = was ? mine.n : a.length+1;
+      a.push({n:n, nick:'뿅아리'+n, uid:uid, text:t, at:new Date().toISOString()});
+      a.sort((x,y)=>y.n-x.n); lset(a); items=a; touched=false; render();
+      say(was?'고쳤어요! (미리보기 모드)':'올렸어요! (미리보기 모드)');
+      btn.disabled=false; return;
+    }
+    try{
+      const r=await fetch(CHEER_API,{method:'POST',
+        headers:{'Content-Type':'text/plain;charset=utf-8'},
+        body:JSON.stringify({uid:uid,text:t})});
+      const j=await r.json();
+      if(!j||!j.ok) throw new Error('fail');
+      touched=false; await load();
+      say(was?'고쳤어요! 고마워요 :)':'올렸어요! 고마워요 :)');
+    }catch(e){ say('지금은 안 올라가네요. 잠시 뒤에 다시 눌러주세요!',1); }
+    btn.disabled=false;
+  });
+
+  more.addEventListener('click',()=>{ shown+=PAGE; render(); });
+  load();
+})();
+
 (function(){
   const links=[...document.querySelectorAll('.snav a')];
   if(!links.length) return;
