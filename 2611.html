@@ -571,6 +571,17 @@ html{scroll-behavior:smooth}
   margin:7px 0 16px;word-break:keep-all;
 }
 .mvsub b{color:#6E2439;font-weight:700}
+.mvnotice{
+  margin:0 0 18px;border:1.5px solid rgba(168,57,74,.35);border-radius:12px;
+  background:rgba(168,57,74,.07);padding:12px 13px 13px;word-break:keep-all;
+}
+.mvnotice .lbl{
+  display:block;font-size:11.5px;font-weight:800;color:#8C2234;
+  margin-bottom:6px;letter-spacing:-.02em;
+}
+.mvnotice p{margin:0 0 8px;font-size:12.5px;line-height:1.68;color:#6E2439}
+.mvnotice p:last-child{margin-bottom:0}
+.mvnotice b{font-weight:800;color:#8C2234}
 
 .mvcard{
   position:relative;background:var(--paper2);color:var(--ink);
@@ -1315,6 +1326,13 @@ html{scroll-behavior:smooth}
       <h2>알뜰폰 요금제 추천</h2>
     </div>
     <p class="mvsub">통신비는 <b>한 번 바꾸면 매달 아껴지는 고정비</b>예요. 가입할 때 <b>'번호이동'</b>을 고르시면 쓰던 번호 그대로 통신사만 바뀝니다! <b>뿅아리들, 이번 달에는 심지어 가격을 돌려받는 요금제도 있어요!</b></p>
+    <div class="mvnotice">
+      <span class="lbl">⚠ 번호이동 전에 꼭 확인하세요</span>
+      <p>알뜰폰은 대부분 <b>LG U+망</b>을 빌려 써요. 그래서 <b>LG망에서 LG망으로 옮기는 건 문제없어요.</b> 망이 같아도 통신사가 다르면 번호이동이 되거든요.</p>
+      <p>안 되는 건 <b>같은 회사로 다시 들어가는 것</b>이에요. <b>LG헬로모바일 &rarr; LG헬로모바일</b>처럼요. 지금 헬로모바일을 쓰고 계시면 <b>아래 1·2번은 신청이 안 돼요.</b> 헬로모바일이 아닌 다른 통신사 요금제로 가셔야 합니다.</p>
+      <p>제가 헬로모바일을 자주 추천드리는 건 다른 이유가 있어서가 아니에요. <b>순전히 요금 혜택이 제일 좋아서</b> 매번 이렇게 되더라고요ㅎㅎ</p>
+    </div>
+
     <div id="mvlist"></div>
     <p class="mvfoot" id="mvfoot"></p>
   </section>
