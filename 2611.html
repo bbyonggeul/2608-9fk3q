@@ -3069,8 +3069,12 @@ const CHEER_API = 'https://script.google.com/macros/s/AKfycbx8_cplz7cLFc-6cNPiSm
         body:JSON.stringify({uid:uid,text:t})});
       const j=await r.json();
       if(!j||!j.ok) throw new Error('fail');
-      touched=false; await load();
+      items=items.filter(x=>x.uid!==uid);
+      items.push({n:j.n, nick:j.nick, uid:uid, text:t, at:j.at||new Date().toISOString()});
+      items.sort((x,y)=>(y.n||0)-(x.n||0));
+      touched=false; render();
       say(was?'고쳤어요! 고마워요 :)':'올렸어요! 고마워요 :)');
+      load();
     }catch(e){ say('지금은 안 올라가네요. 잠시 뒤에 다시 눌러주세요!',1); }
     btn.disabled=false;
   });
