@@ -757,6 +757,30 @@ html{scroll-behavior:smooth}
 .rchk li::before{
   content:'✓';flex:none;color:var(--butter);font-weight:800;font-size:12px;padding-top:1px;
 }
+.rsim{
+  position:relative;margin:0 0 26px;
+  background:var(--butter);color:var(--ink);
+  border:2px solid var(--line);border-radius:13px;
+  padding:15px 16px 14px;
+  box-shadow:4px 4px 0 rgba(16,26,53,.45);
+}
+.rsim .kick{
+  font-family:var(--mono);font-size:9.5px;font-weight:700;
+  letter-spacing:.12em;opacity:.6;display:block;
+}
+.rsim h3{font-size:16px;font-weight:800;letter-spacing:-.035em;margin:5px 0 7px;color:var(--ink)}
+.rsim p{font-size:12.5px;line-height:1.7;margin:0;color:rgba(21,27,41,.84);word-break:keep-all}
+.rsim p b{color:var(--ink);font-weight:800}
+.rsim .pw{
+  margin-top:9px;font-size:11.5px;line-height:1.55;
+  background:rgba(21,27,41,.1);border-radius:7px;padding:7px 9px;word-break:keep-all;
+}
+.rsim-cta{
+  display:flex;align-items:center;justify-content:center;gap:7px;margin-top:11px;
+  background:var(--ink);color:var(--paper);border-radius:9px;padding:11px;
+  font-size:13px;font-weight:800;text-decoration:none;letter-spacing:-.02em;
+}
+.rsim-cta .arw{font-family:var(--mono);font-size:12px}
 .rnote-cta{
   display:flex;align-items:center;justify-content:center;gap:7px;
   margin-top:14px;background:var(--butter);color:#3A2C00;
@@ -1281,18 +1305,13 @@ const SAVEPICKS = {
 const CARDNOTE = {
   after: 2,
   html: `
-    <div class="recnote">
-      <h3>더 찾아보고 싶으시다면</h3>
-      <p>연말이라 <b>거의 모든 카드사가 캐시백 이벤트</b>를 열고 있어요! 11월 기준으로 보면 <b>삼성 118만원, BC바로 108만원, KB국민 104만원, 현대 90만원, 신한 74만원, 롯데 65만원, 하나 23만원, NH농협 20.5만원</b>이 걸려 있어요. 다만 이 숫자들은 <b>해외 결제까지 수천만원을 써야 나오는 최대치</b>라서, 위 세 장은 <b>국내에서 현실적으로 채울 수 있는 금액만 놓고</b> 골라드린 거예요. 고르실 때는 이 네 가지만 확인하세요.</p>
-      <ul class="rchk">
-        <li>기간 안에 <b>어차피 쓸 금액</b>인가요?</li>
-        <li>그 카드사를 <b>최근 6개월간 쓴 적</b>이 없나요?</li>
-        <li><b>온라인으로 발급</b>하는 게 맞나요? (모집인·지점 발급은 대부분 제외)</li>
-        <li>연회비가 캐시백에 비해 과하지 않나요?</li>
-        <li>유의사항을 읽어봐도 내가 혜택 받는 데 걸리는 게 없나요?</li>
-      </ul>
-      <a class="rnote-cta" href="https://www.card-gorilla.com/event" target="_blank" rel="noopener">
-        <span>카드사 캐시백 이벤트 보기</span><span class="arw">&rarr;</span>
+    <div class="rsim">
+      <span class="kick">KE 2026 · TOOL</span>
+      <h3>내게 맞는 대한항공 마일리지 카드 찾기</h3>
+      <p>마일리지 카드는 <b>연회비·적립률·내가 쓰는 금액</b>에 따라 유리한 카드가 완전히 달라져요. 그래서 <b>숫자를 직접 넣어보는 시뮬레이션</b>을 만들어뒀어요. 한 달에 얼마나 쓰는지만 넣으면 <b>내 소비에서 어떤 카드가 제일 빨리 쌓이는지</b> 바로 나옵니다.</p>
+      <p class="pw">유튜브 영상에서 알려드린 <b>비밀번호</b>를 넣고 들어오시면 돼요!</p>
+      <a class="rsim-cta" href="https://bbyonggeul.github.io/ke-card/" target="_blank" rel="noopener">
+        <span>시뮬레이션 해보기</span><span class="arw">&rarr;</span>
       </a>
     </div>`
 };
